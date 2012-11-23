@@ -3,12 +3,12 @@ $(document).ready(function(){
 		$('#entry-form').append('<input type="hidden" id="save" value="save" name="save" />');
 		$('#entry-form').autosave({
 			/** Timer durations **/
-			interval: 	30000,
+			interval: 	Number(autosave_delay),
 			monitor: 	3000,
 			/** Callbacks **/
 			save: 		function(e,o) {
 				d = new Date();
-				t = 'Autosave : dernier enregistrement à '+d.toLocaleTimeString();
+				t = autosave_msg_saved.replace('%s',d.toLocaleTimeString());
 				if ($('#content p.message').length > 0) {
 					$('#content p.message').text(t);
 				} else {
@@ -20,7 +20,7 @@ $(document).ready(function(){
 			}
 		});
 	} else {
-		t = 'Autosave : en attente d\'un premier enregistrement';
+		t = autosave_msg_waiting;
 		if ($('#content p.message').length > 0) {
 			$('#content p.message').text(t);
 		} else {

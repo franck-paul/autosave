@@ -13,9 +13,9 @@ if (!defined('DC_RC_PATH')) { return; }
 
 $this->registerModule(
 	/* Name */			"Autosave",
-	/* Description*/		"Autosave post during edition",
-	/* Author */			"Alain Vagner",
-	/* Version */			'0.1',
+	/* Description*/		"Autosave entry during edition",
+	/* Author */			"Alain Vagner, Franck Paul",
+	/* Version */			'0.3',
 	/* Permissions */		'usage,contentadmin',
 	/* Priority */			50
 );

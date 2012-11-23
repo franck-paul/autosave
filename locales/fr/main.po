@@ -1,0 +1,14 @@
+msgid "Autosave"
+msgstr "Sauvegarde automatique"
+
+msgid "Autosave entry during edition"
+msgstr "Enregistrement automatique pendant l'édition"
+
+msgid "Autosave: waiting for first save..."
+msgstr "Sauvegarde automatique : en attente d'un premier enregistrement..."
+
+msgid "Autosave: last save at %s"
+msgstr "Sauvegarde automatique : dernier enregistrement à %s"
+
+msgid "Save every (in seconds, default: 30):"
+msgstr "Enregistrer tous les (en secondes, 30 par défaut) :"
