@@ -15,7 +15,7 @@ $this->registerModule(
 	/* Name */			"Autosave",
 	/* Description*/		"Autosave entry during edition",
 	/* Author */			"Alain Vagner, Franck Paul",
-	/* Version */			'0.3',
+	/* Version */			'0.4',
 	/* Permissions */		'usage,contentadmin',
 	/* Priority */			50
 );
