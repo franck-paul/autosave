@@ -1,5 +1,6 @@
 $(document).ready(function(){
 	if ($('#id').length) {
+		$('#entry-form').append('<input type="hidden" id="save" value="save" name="save" />');
 		$('#entry-form').autosave({
 			/** Timer durations **/
 			interval: 	Number(autosave_delay),
