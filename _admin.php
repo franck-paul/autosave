@@ -71,7 +71,7 @@ class autosaveBehaviors
 		$core->auth->user_prefs->addWorkspace('interface');
 
 		echo
-		'<fieldset><legend>'.__('Autosave').'</legend>'.
+		'<div class="fieldset"><h5>'.__('Autosave').'</h5>'.
 		
 		'<p><label for="autosave" class="classic">'.
 		form::checkbox('autosave',1,$core->auth->user_prefs->interface->autosave).' '.
@@ -80,8 +80,7 @@ class autosaveBehaviors
 		'<p><label for="autosave_delay">'.__('Save every (in seconds, default: 30):').
 		form::field('autosave_delay',5,4,(integer) $core->auth->user_prefs->interface->autosave_delay).'</label></p>'.
 
-		'<br class="clear" />'. //Opera sucks
-		'</fieldset>';
+		'</div>';
 	}
 }
 ?>
