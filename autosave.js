@@ -15,7 +15,7 @@ $(document).ready(function(){
 					var msg = $(document.createElement('p'));
 					msg.addClass('message');
 					msg.text(t);
-					$('#content').prepend(msg);
+					$('#content h2').after(msg);
 				}
 			}
 		});
@@ -27,7 +27,7 @@ $(document).ready(function(){
 			var msg = $(document.createElement('p'));
 			msg.addClass('message');
 			msg.text(t);
-			$('#content').prepend(msg);
+			$('#content h2').after(msg);
 		}
 	}
 });
