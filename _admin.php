@@ -1,14 +1,15 @@
 <?php
 # -- BEGIN LICENSE BLOCK ----------------------------------
+# This file is part of autosave, a plugin for Dotclear 2.
 #
-# This file is part of Dotclear 2.
+# Copyright (c) biou, Franck Paul and contributors
+# carnet.franck.paul@gmail.com
 #
-# Copyright (c) 2003-2012 Olivier Meunier and contributors
 # Licensed under the GPL version 2.0 license.
-# See LICENSE file or
+# A copy of this license is available in LICENSE file or at
 # http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
-#
 # -- END LICENSE BLOCK ------------------------------------
+
 if (!defined('DC_CONTEXT_ADMIN')) { return; }
 
 $core->addBehavior('adminPostHeaders',array('autosaveBehaviors','jsLoad'));
