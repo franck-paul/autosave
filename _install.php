@@ -26,7 +26,7 @@ try
 	}
 
 	$core->setVersion('autosave',$new_version);
-	
+
 	return true;
 }
 catch (Exception $e)

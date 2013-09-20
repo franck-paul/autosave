@@ -15,9 +15,6 @@ if (!defined('DC_CONTEXT_ADMIN')) { return; }
 $core->addBehavior('adminPostHeaders',array('autosaveBehaviors','jsLoad'));
 
 $core->addBehavior('adminBeforeUserOptionsUpdate',array('autosaveBehaviors','adminBeforeUserOptionsUpdate'));
-if (version_compare(DC_VERSION,'2.4.4','<=')) {
-	$core->addBehavior('adminBeforeUserUpdate',array('autosaveBehaviors','adminBeforeUserOptionsUpdate'));
-}
 $core->addBehavior('adminPreferencesForm',array('autosaveBehaviors','adminPreferencesForm'));
 
 class autosaveBehaviors
@@ -65,7 +62,7 @@ class autosaveBehaviors
 			$core->error->add($e->getMessage());
 		}
 	}
-	
+
 	public static function adminPreferencesForm($core)
 	{
 		// Add fieldset for plugin options
@@ -73,7 +70,7 @@ class autosaveBehaviors
 
 		echo
 		'<div class="fieldset"><h5>'.__('Autosave').'</h5>'.
-		
+
 		'<p><label for="autosave" class="classic">'.
 		form::checkbox('autosave',1,$core->auth->user_prefs->interface->autosave).' '.
 		__('Autosave entry during edition').'</label></p>'.
