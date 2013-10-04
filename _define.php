@@ -17,6 +17,9 @@ $this->registerModule(
 	/* Description*/		"Autosave entry during edition",
 	/* Author */			"Alain Vagner, Franck Paul",
 	/* Version */			'0.5',
-	/* Permissions */		'usage,contentadmin',
-	/* Priority */			50
+	array(
+		/* Permissions */	'permissions' =>	'usage,contentadmin',
+		/* Type */			'type' =>			'plugin',
+		/* Priority */		'priority' => 		50
+	)
 );
