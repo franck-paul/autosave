@@ -34,7 +34,7 @@ class autosaveBehaviors
 				$delay = 30;
 			}
 			return
-				'<script type="text/javascript" src="index.php?pf=autosave/js/jquery.autosave.js"></script>'."\n".
+				dcPage::jsLoad(urldecode(dcPage::getPF('autosave/js/jquery.autosave.js')),$core->getVersion('autosave'))."\n".
 				'<script type="text/javascript">'."\n".
 				"//<![CDATA[\n".
 				dcPage::jsVar('autosave_msg_waiting',__('Autosave: waiting for first save...')).
@@ -42,7 +42,7 @@ class autosaveBehaviors
 				dcPage::jsVar('autosave_delay',$delay * 1000).
 				"\n//]]>\n".
 				"</script>\n".
-				'<script type="text/javascript" src="index.php?pf=autosave/js/autosave.js"></script>'."\n";
+				dcPage::jsLoad(urldecode(dcPage::getPF('autosave/js/autosave.js')),$core->getVersion('autosave'))."\n";
 		}
 	}
 
