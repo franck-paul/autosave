@@ -10,16 +10,16 @@
 # http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 # -- END LICENSE BLOCK ------------------------------------
 
-if (!defined('DC_RC_PATH')) { return; }
+if (!defined('DC_RC_PATH')) {return;}
 
 $this->registerModule(
-	/* Name */			"Autosave",
-	/* Description*/		"Autosave entry during edition",
-	/* Author */			"Alain Vagner, Franck Paul",
-	/* Version */			'0.5',
-	array(
-		/* Permissions */	'permissions' =>	'usage,contentadmin',
-		/* Type */			'type' =>			'plugin',
-		/* Priority */		'priority' => 		50
-	)
+    "Autosave",                      // Name
+    "Autosave entry during edition", // Description
+    "Alain Vagner, Franck Paul",     // Author
+    '0.5',                           // Version
+    array(
+        'permissions' => 'usage,contentadmin',
+        'type'        => 'plugin',
+        'priority'    => 50
+    )
 );
