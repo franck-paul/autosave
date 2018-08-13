@@ -17,7 +17,7 @@ $this->registerModule(
     "Autosave",                      // Name
     "Autosave entry during edition", // Description
     "Alain Vagner, Franck Paul",     // Author
-    '0.5',                           // Version
+    '0.6',                           // Version
     array(
         'permissions' => 'usage,contentadmin',
         'type'        => 'plugin',
