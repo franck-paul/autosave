@@ -19,6 +19,7 @@ $this->registerModule(
     "Alain Vagner, Franck Paul",     // Author
     '0.6',                           // Version
     array(
+        'requires'    => array(array('core', '2.14')),
         'permissions' => 'usage,contentadmin',
         'type'        => 'plugin',
         'priority'    => 50
