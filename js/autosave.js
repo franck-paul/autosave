@@ -10,8 +10,8 @@ $(document).ready(function() {
       monitor: 3000,
       /** Callbacks **/
       save: function() {
-        var d = new Date();
-        var t = autosave_msg_saved.replace('%s', d.toLocaleTimeString());
+        const d = new Date();
+        const t = autosave_msg_saved.replace('%s', d.toLocaleTimeString());
         if ($('#content p.message').length > 0) {
           $('#content p.message').text(t);
         } else {
@@ -23,7 +23,7 @@ $(document).ready(function() {
       }
     });
   } else {
-    var t = autosave_msg_waiting;
+    const t = autosave_msg_waiting;
     if ($('#content p.message').length > 0) {
       $('#content p.message').text(t);
     } else {

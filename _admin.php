@@ -16,10 +16,10 @@ if (!defined('DC_CONTEXT_ADMIN')) {return;}
 // dead but useful code, in order to have translations
 __('Autosave') . __('Autosave entry during edition');
 
-$core->addBehavior('adminPostHeaders', array('autosaveBehaviors', 'jsLoad'));
+$core->addBehavior('adminPostHeaders', ['autosaveBehaviors', 'jsLoad']);
 
-$core->addBehavior('adminBeforeUserOptionsUpdate', array('autosaveBehaviors', 'adminBeforeUserOptionsUpdate'));
-$core->addBehavior('adminPreferencesForm', array('autosaveBehaviors', 'adminPreferencesForm'));
+$core->addBehavior('adminBeforeUserOptionsUpdate', ['autosaveBehaviors', 'adminBeforeUserOptionsUpdate']);
+$core->addBehavior('adminPreferencesForm', ['autosaveBehaviors', 'adminPreferencesForm']);
 
 class autosaveBehaviors
 {
