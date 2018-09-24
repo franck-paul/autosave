@@ -15,7 +15,7 @@ $(document).ready(function() {
         if ($('#content p.message').length > 0) {
           $('#content p.message').text(t);
         } else {
-          var msg = $(document.createElement('p'));
+          const msg = $(document.createElement('p'));
           msg.addClass('message');
           msg.text(t);
           $('#content h2').after(msg);
@@ -27,7 +27,7 @@ $(document).ready(function() {
     if ($('#content p.message').length > 0) {
       $('#content p.message').text(t);
     } else {
-      var msg = $(document.createElement('p'));
+      const msg = $(document.createElement('p'));
       msg.addClass('message');
       msg.text(t);
       $('#content h2').after(msg);

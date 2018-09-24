@@ -1,3 +1,6 @@
+/*global jQuery */
+'use strict';
+
 /**
  * jQuery Autosave 1.1.0
  *
@@ -19,9 +22,9 @@
 (function($) {
 
   $.fn.autosave = function(o) {
-    var o = $.extend({}, $.fn.autosave.defaults, o);
-    var saver;
-    var self = this;
+    o = $.extend({}, $.fn.autosave.defaults, o);
+    let saver;
+    const self = this;
 
     $(this).addClass('autosave');
 
@@ -68,13 +71,13 @@
       if (!o.validate.apply(self, [self, o]))
         return;
 
-      var data = $(this).find(o.data).not('.autosave\-ignore').serializeArray();
+      const data = $(this).find(o.data).not('.autosave\-ignore').serializeArray();
 
       // If the form is dirty and there is not already an active execution of the autosaver.
       if ($.param(data) != $.param($(this).data('autosave.form')) && $(this).data('autosave.active') != true) {
         $(this).data('autosave.active', true);
 
-        var callback = function(response) {
+        const callback = function(response) {
           $(self).data('autosave.active', false);
           $(self).trigger('autosave.record');
 
@@ -116,17 +119,17 @@
     /** Timer durations **/
     interval: 120000,
     /** Callbacks **/
-    setup: function(e, o) {},
-    record: function(e, o) {},
-    before: function(e, o) {
+    setup: function() {},
+    record: function() {},
+    before: function() {
       return true;
     },
-    validate: function(e, o) {
+    validate: function() {
       return $.isFunction($.fn.validate) && !$(this).is('.ignore-validate') ? $(this).valid() : true;
     },
-    save: function(e, o) {},
-    shutdown: function(e, o) {},
-    dirty: function(e, o) {}
+    save: function() {},
+    shutdown: function() {},
+    dirty: function() {}
   };
 
   window.onbeforeunload = function() {
