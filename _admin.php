@@ -58,7 +58,7 @@ class autosaveBehaviors
             if ($autosave_delay < 1) {
                 $autosave_delay = 30; // seconds
             }
-            $core->auth->user_prefs->interface->put('autosave_active', !empty($_POST['autosave_active']), 'boolean');
+            $core->auth->user_prefs->interface->put('autosave', !empty($_POST['autosave_active']), 'boolean');
             $core->auth->user_prefs->interface->put('autosave_delay', $autosave_delay);
         } catch (Exception $e) {
             $core->error->add($e->getMessage());
