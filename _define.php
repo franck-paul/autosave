@@ -19,9 +19,14 @@ $this->registerModule(
     "Alain Vagner, Franck Paul",     // Author
     '0.7',                           // Version
     [
-        'requires'    => [['core', '2.14']],
+        'requires'    => [['core', '2.16']],
         'permissions' => 'usage,contentadmin',
         'type'        => 'plugin',
-        'priority'    => 50
+        'priority'    => 50,
+        'details'     => 'https://open-time.net/?q=autosave',       // Details URL
+        'support'     => 'https://github.com/franck-paul/autosave', // Support URL
+        'settings'    => [                                          // Settings
+            'pref' => '#user-options.autosave'
+        ]
     ]
 );

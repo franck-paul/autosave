@@ -35,12 +35,14 @@ class autosaveBehaviors
                 $delay = 30;
             }
             return
+            dcPage::jsJson('autosave', [
+                'delay' => $delay * 1000,
+                'msg'   => [
+                    'waiting' => __('Autosave: waiting for first save...'),
+                    'saved'   => __('Autosave: last save at %s')
+                ]
+            ]) .
             dcPage::jsLoad(urldecode(dcPage::getPF('autosave/js/jquery.autosave.js')), $core->getVersion('autosave')) . "\n" .
-            '<script type="text/javascript">' . "\n" .
-            dcPage::jsVar('autosave_msg_waiting', __('Autosave: waiting for first save...')) .
-            dcPage::jsVar('autosave_msg_saved', __('Autosave: last save at %s')) .
-            dcPage::jsVar('autosave_delay', $delay * 1000) .
-            "</script>\n" .
             dcPage::jsLoad(urldecode(dcPage::getPF('autosave/js/autosave.js')), $core->getVersion('autosave')) . "\n";
         }
     }
@@ -56,7 +58,7 @@ class autosaveBehaviors
             if ($autosave_delay < 1) {
                 $autosave_delay = 30; // seconds
             }
-            $core->auth->user_prefs->interface->put('autosave', !empty($_POST['autosave']), 'boolean');
+            $core->auth->user_prefs->interface->put('autosave_active', !empty($_POST['autosave_active']), 'boolean');
             $core->auth->user_prefs->interface->put('autosave_delay', $autosave_delay);
         } catch (Exception $e) {
             $core->error->add($e->getMessage());
@@ -69,13 +71,13 @@ class autosaveBehaviors
         $core->auth->user_prefs->addWorkspace('interface');
 
         echo
-        '<div class="fieldset"><h5>' . __('Autosave') . '</h5>' .
+        '<div class="fieldset"><h5 id="autosave">' . __('Autosave') . '</h5>' .
 
-        '<p><label for="autosave" class="classic">' .
-        form::checkbox('autosave', 1, $core->auth->user_prefs->interface->autosave) . ' ' .
+        '<p><label for="autosave_active" class="classic">' .
+        form::checkbox('autosave_active', 1, $core->auth->user_prefs->interface->autosave) . ' ' .
         __('Autosave entry during edition') . '</label></p>' .
 
-        '<p><label for="autosave_delay">' . __('Save every (in seconds, default: 30):') .
+        '<p><label for="autosave_delay">' . __('Save every (in seconds, default: 30):') . ' ' .
         form::number('autosave_delay', 0, 9999, (integer) $core->auth->user_prefs->interface->autosave_delay) . '</label></p>' .
 
             '</div>';
