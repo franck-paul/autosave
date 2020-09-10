@@ -28,7 +28,7 @@
 
     $(this).addClass('autosave');
 
-    this.bind('autosave.setup', function() {
+    this.on('autosave.setup', function() {
       o.setup.apply(self.element, [self.element, o]);
 
       // Start by recording the current state of the form for comparison later
@@ -39,7 +39,7 @@
         $(self).trigger('autosave.save');
       }, o.interval);
 
-    }).bind('autosave.shutdown', function() {
+    }).on('autosave.shutdown', function() {
       o.shutdown.apply(this.element, [this.element, o]);
 
       clearInterval(saver);
@@ -50,21 +50,21 @@
       if ($(this).data('autosave.dirty') == true)
         $(this).trigger('autosave.save', [false]);
 
-      $(this).removeClass('autosave').unbind('autosave');
+      $(this).removeClass('autosave').off('autosave');
       $(this).data('autosave.form', null);
       $(this).data('autosave.dirty', null);
 
-    }).bind('autosave.reset', function() {
+    }).on('autosave.reset', function() {
       $(this).trigger('autosave.shutdown');
       $(this).trigger('autosave.setup');
 
-    }).bind('autosave.record', function() {
+    }).on('autosave.record', function() {
       o.record.apply(this.element, [this.element, o]);
 
       $(this).data('autosave.dirty', false);
       $(this).data('autosave.form', $(this).find(o.data).not('.autosave\-ignore').serializeArray());
 
-    }).bind('autosave.save', function(e, async) {
+    }).on('autosave.save', function(e, async) {
       if (!o.before.apply(self, [self, o]))
         return;
 
@@ -84,7 +84,7 @@
           o.save.apply(self, [self, o, response]);
         };
 
-        if (o.url != undefined && $.isFunction(o.url)) {
+        if (o.url != undefined && typeof o.url === 'function') {
           o.url.apply(self.element, [self.element, o, data, callback]);
         } else {
           $.ajax({
@@ -125,7 +125,7 @@
       return true;
     },
     validate: function() {
-      return $.isFunction($.fn.validate) && !$(this).is('.ignore-validate') ? $(this).valid() : true;
+      return typeof $.fn.validate === 'function' && !$(this).is('.ignore-validate') ? $(this).valid() : true;
     },
     save: function() {},
     shutdown: function() {},
