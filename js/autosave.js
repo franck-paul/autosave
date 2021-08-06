@@ -1,8 +1,8 @@
-/*global $, dotclear, getData */
+/*global $, dotclear */
 'use strict';
 
-$(document).ready(function() {
-  dotclear.autosave = getData('autosave');
+$(document).ready(function () {
+  dotclear.autosave = dotclear.getData('autosave');
   if ($('#id').length) {
     $('#entry-form').append('<input type="hidden" id="save" value="save" name="save" />');
     $('#entry-form').autosave({
@@ -10,7 +10,7 @@ $(document).ready(function() {
       interval: Number(dotclear.autosave.delay),
       monitor: 3000,
       /** Callbacks **/
-      save: function() {
+      save: function () {
         const d = new Date();
         const t = dotclear.autosave.msg.saved.replace('%s', d.toLocaleTimeString());
         if ($('#content p.message').length > 0) {
@@ -21,7 +21,7 @@ $(document).ready(function() {
           msg.text(t);
           $('#content h2').after(msg);
         }
-      }
+      },
     });
   } else {
     const t = dotclear.autosave.msg.waiting;

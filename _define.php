@@ -10,16 +10,17 @@
  * @copyright Alain Vagner, Franck Paul carnet.franck.paul@gmail.com
  * @copyright GPL-2.0 https://www.gnu.org/licenses/gpl-2.0.html
  */
-
-if (!defined('DC_RC_PATH')) {return;}
+if (!defined('DC_RC_PATH')) {
+    return;
+}
 
 $this->registerModule(
-    "Autosave",                      // Name
-    "Autosave entry during edition", // Description
-    "Alain Vagner, Franck Paul",     // Author
-    '0.8',                           // Version
+    'Autosave',                      // Name
+    'Autosave entry during edition', // Description
+    'Alain Vagner, Franck Paul',     // Author
+    '0.9',                           // Version
     [
-        'requires'    => [['core', '2.16']],
+        'requires'    => [['core', '2.19']],
         'permissions' => 'usage,contentadmin',
         'type'        => 'plugin',
         'priority'    => 50,

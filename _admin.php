@@ -10,8 +10,9 @@
  * @copyright Alain Vagner, Franck Paul carnet.franck.paul@gmail.com
  * @copyright GPL-2.0 https://www.gnu.org/licenses/gpl-2.0.html
  */
-
-if (!defined('DC_CONTEXT_ADMIN')) {return;}
+if (!defined('DC_CONTEXT_ADMIN')) {
+    return;
+}
 
 // dead but useful code, in order to have translations
 __('Autosave') . __('Autosave entry during edition');
@@ -34,6 +35,7 @@ class autosaveBehaviors
             if (!$delay) {
                 $delay = 30;
             }
+
             return
             dcPage::jsJson('autosave', [
                 'delay' => $delay * 1000,
@@ -53,6 +55,7 @@ class autosaveBehaviors
 
         // Get and store user's prefs for plugin options
         $core->auth->user_prefs->addWorkspace('interface');
+
         try {
             $autosave_delay = (integer) $_POST['autosave_delay'];
             if ($autosave_delay < 1) {
