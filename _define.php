@@ -24,10 +24,12 @@ $this->registerModule(
         'permissions' => 'usage,contentadmin',
         'type'        => 'plugin',
         'priority'    => 50,
-        'details'     => 'https://open-time.net/?q=autosave',       // Details URL
-        'support'     => 'https://github.com/franck-paul/autosave', // Support URL
         'settings'    => [                                          // Settings
             'pref' => '#user-options.autosave'
-        ]
+        ],
+
+        'details'    => 'https://open-time.net/?q=autosave',       // Details URL
+        'support'    => 'https://github.com/franck-paul/autosave', // Support URL
+        'repository' => 'https://raw.githubusercontent.com/franck-paul/autosave/main/dcstore.xml'
     ]
 );
