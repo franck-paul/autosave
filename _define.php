@@ -30,6 +30,6 @@ $this->registerModule(
 
         'details'    => 'https://open-time.net/?q=autosave',       // Details URL
         'support'    => 'https://github.com/franck-paul/autosave', // Support URL
-        'repository' => 'https://raw.githubusercontent.com/franck-paul/autosave/main/dcstore.xml'
+        'repository' => 'https://raw.githubusercontent.com/franck-paul/autosave/master/dcstore.xml'
     ]
 );
