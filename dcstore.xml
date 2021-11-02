@@ -1,8 +1,8 @@
 <modules xmlns:da="http://dotaddict.org/da/">
   <module id="autosave">
-    <name>Autosave</name>
+    <name>Autosave entry during edition</name>
     <version>0.9</version>
-    <author>Alain Vagner, Franck Paul</author>
+    <author>Autosave entry during edition</author>
     <desc>Autosave entry during edition</desc>
     <file>https://github.com/franck-paul/autosave/releases/download/0.9/plugin-autosave-0.9.zip</file>
     <da:dcmin>2.19</da:dcmin>
