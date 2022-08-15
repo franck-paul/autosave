@@ -18,18 +18,18 @@ $this->registerModule(
     'Autosave',                      // Name
     'Autosave entry during edition', // Description
     'Alain Vagner, Franck Paul',     // Author
-    '0.9',                           // Version
+    '0.10',
     [
-        'requires'    => [['core', '2.19']],
+        'requires'    => [['core', '2.23']],
         'permissions' => 'usage,contentadmin',
         'type'        => 'plugin',
         'priority'    => 50,
         'settings'    => [                                          // Settings
-            'pref' => '#user-options.autosave'
+            'pref' => '#user-options.autosave',
         ],
 
         'details'    => 'https://open-time.net/?q=autosave',       // Details URL
         'support'    => 'https://github.com/franck-paul/autosave', // Support URL
-        'repository' => 'https://raw.githubusercontent.com/franck-paul/autosave/master/dcstore.xml'
+        'repository' => 'https://raw.githubusercontent.com/franck-paul/autosave/master/dcstore.xml',
     ]
 );

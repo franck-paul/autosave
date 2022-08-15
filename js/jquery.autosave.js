@@ -19,7 +19,8 @@
  * - Added isDirty() method
  * - Uses serialization from jQuery 1.4.2 and no longer needs the form plugin.
  */
-(function($) {
+(() => {
+  const $ = jQuery;
 
   $.fn.autosave = function(o) {
     o = $.extend({}, $.fn.autosave.defaults, o);
@@ -35,7 +36,7 @@
       $(this).trigger('autosave.record');
 
       // Fire off the autosave at an interval
-      saver = setInterval(function() {
+      saver = setInterval(() => {
         $(self).trigger('autosave.save');
       }, o.interval);
 
@@ -77,7 +78,7 @@
       if ($.param(data) != $.param($(this).data('autosave.form')) && $(this).data('autosave.active') != true) {
         $(this).data('autosave.active', true);
 
-        const callback = function(response) {
+        const callback = (response) => {
           $(self).data('autosave.active', false);
           $(self).trigger('autosave.record');
 
@@ -88,10 +89,10 @@
           o.url.apply(self.element, [self.element, o, data, callback]);
         } else {
           $.ajax({
-            async: (async == undefined) ? true : async,
+            async: async ?? true,
             url: (o == undefined || o.url == undefined) ? $(this).attr('action') : o.url,
             type: 'post',
-            data: data,
+            data,
             success: callback
           });
         }
@@ -104,11 +105,10 @@
   $.fn.isDirty = function() {
     if ($(this).data('autosave.dirty') == true) {
       return true;
-    } else {
-      if ($(this).data('autosave.form') == undefined)
-        return false;
-      return !($.param($(this).data('autosave.form')) == $.param($(this).find('input,select,textarea').not('.autosave\-ignore').serializeArray()));
     }
+    if ($(this).data('autosave.form') == undefined)
+    return false;
+    return $.param($(this).data('autosave.form')) != $.param($(this).find('input,select,textarea').not('.autosave\-ignore').serializeArray());
   };
 
   $.fn.autosave.defaults = {
@@ -117,23 +117,23 @@
     /** Selector for Choosing Data to Save **/
     data: 'input,select,textarea',
     /** Timer durations **/
-    interval: 120000,
+    interval: 120_000,
     /** Callbacks **/
-    setup: function() {},
-    record: function() {},
-    before: function() {
+    setup() {},
+    record() {},
+    before() {
       return true;
     },
-    validate: function() {
+    validate() {
       return typeof $.fn.validate === 'function' && !$(this).is('.ignore-validate') ? $(this).valid() : true;
     },
-    save: function() {},
-    shutdown: function() {},
-    dirty: function() {}
+    save() {},
+    shutdown() {},
+    dirty() {}
   };
 
-  window.onbeforeunload = function() {
+  window.onbeforeunload = () => {
     $('form.autosave').trigger('autosave.shutdown');
   };
 
-})(jQuery);
+})();

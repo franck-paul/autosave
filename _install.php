@@ -14,8 +14,8 @@ if (!defined('DC_CONTEXT_ADMIN')) {
     return;
 }
 
-$new_version = $core->plugins->moduleInfo('autosave', 'version');
-$old_version = $core->getVersion('autosave');
+$new_version = dcCore::app()->plugins->moduleInfo('autosave', 'version');
+$old_version = dcCore::app()->getVersion('autosave');
 
 if (version_compare($old_version, $new_version, '>=')) {
     return;
@@ -23,16 +23,16 @@ if (version_compare($old_version, $new_version, '>=')) {
 
 try {
     // Default user settings
-    $core->auth->user_prefs->addWorkspace('interface');
-    if (!$core->auth->user_prefs->interface->prefExists('autosave')) {
-        $core->auth->user_prefs->interface->put('autosave', true, 'boolean');
+    dcCore::app()->auth->user_prefs->addWorkspace('interface');
+    if (!dcCore::app()->auth->user_prefs->interface->prefExists('autosave')) {
+        dcCore::app()->auth->user_prefs->interface->put('autosave', true, 'boolean');
     }
 
-    $core->setVersion('autosave', $new_version);
+    dcCore::app()->setVersion('autosave', $new_version);
 
     return true;
 } catch (Exception $e) {
-    $core->error->add($e->getMessage());
+    dcCore::app()->error->add($e->getMessage());
 }
 
 return false;
