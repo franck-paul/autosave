@@ -15,21 +15,24 @@ if (!defined('DC_RC_PATH')) {
 }
 
 $this->registerModule(
-    'Autosave',                      // Name
-    'Autosave entry during edition', // Description
-    'Alain Vagner, Franck Paul',     // Author
-    '0.10',
+    'Autosave',
+    'Autosave entry during edition',
+    'Alain Vagner, Franck Paul',
+    '0.11',
     [
-        'requires'    => [['core', '2.23']],
-        'permissions' => 'usage,contentadmin',
-        'type'        => 'plugin',
-        'priority'    => 50,
-        'settings'    => [                                          // Settings
+        'requires'    => [['core', '2.24']],
+        'permissions' => dcCore::app()->auth->makePermissions([
+            dcAuth::PERMISSION_USAGE,
+            dcAuth::PERMISSION_CONTENT_ADMIN,
+        ]),
+        'type'     => 'plugin',
+        'priority' => 50,
+        'settings' => [
             'pref' => '#user-options.autosave',
         ],
 
-        'details'    => 'https://open-time.net/?q=autosave',       // Details URL
-        'support'    => 'https://github.com/franck-paul/autosave', // Support URL
+        'details'    => 'https://open-time.net/?q=autosave',
+        'support'    => 'https://github.com/franck-paul/autosave',
         'repository' => 'https://raw.githubusercontent.com/franck-paul/autosave/master/dcstore.xml',
     ]
 );

@@ -17,11 +17,6 @@ if (!defined('DC_CONTEXT_ADMIN')) {
 // dead but useful code, in order to have translations
 __('Autosave') . __('Autosave entry during edition');
 
-dcCore::app()->addBehavior('adminPostHeaders', ['autosaveBehaviors', 'jsLoad']);
-
-dcCore::app()->addBehavior('adminBeforeUserOptionsUpdate', ['autosaveBehaviors', 'adminBeforeUserOptionsUpdate']);
-dcCore::app()->addBehavior('adminPreferencesForm', ['autosaveBehaviors', 'adminPreferencesForm']);
-
 class autosaveBehaviors
 {
     public static function jsLoad()
@@ -47,7 +42,7 @@ class autosaveBehaviors
         }
     }
 
-    public static function adminBeforeUserOptionsUpdate($cur, $userID)
+    public static function adminBeforeUserOptionsUpdate()
     {
         // Get and store user's prefs for plugin options
         dcCore::app()->auth->user_prefs->addWorkspace('interface');
@@ -64,7 +59,7 @@ class autosaveBehaviors
         }
     }
 
-    public static function adminPreferencesForm($core)
+    public static function adminPreferencesForm()
     {
         // Add fieldset for plugin options
         dcCore::app()->auth->user_prefs->addWorkspace('interface');
@@ -82,3 +77,8 @@ class autosaveBehaviors
             '</div>';
     }
 }
+
+dcCore::app()->addBehavior('adminPostHeaders', [autosaveBehaviors::class, 'jsLoad']);
+
+dcCore::app()->addBehavior('adminBeforeUserOptionsUpdate', [autosaveBehaviors::class, 'adminBeforeUserOptionsUpdate']);
+dcCore::app()->addBehavior('adminPreferencesFormV2', [autosaveBehaviors::class, 'adminPreferencesForm']);
