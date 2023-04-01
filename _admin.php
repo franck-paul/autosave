@@ -22,7 +22,6 @@ class autosaveBehaviors
     public static function jsLoad()
     {
         // Get and store user's prefs for plugin options
-        dcCore::app()->auth->user_prefs->addWorkspace('interface');
         if (dcCore::app()->auth->user_prefs->interface->autosave) {
             $delay = (int) dcCore::app()->auth->user_prefs->interface->autosave_delay;
             if (!$delay) {
@@ -45,8 +44,6 @@ class autosaveBehaviors
     public static function adminBeforeUserOptionsUpdate()
     {
         // Get and store user's prefs for plugin options
-        dcCore::app()->auth->user_prefs->addWorkspace('interface');
-
         try {
             $autosave_delay = (int) $_POST['autosave_delay'];
             if ($autosave_delay < 1) {
@@ -62,7 +59,6 @@ class autosaveBehaviors
     public static function adminPreferencesForm()
     {
         // Add fieldset for plugin options
-        dcCore::app()->auth->user_prefs->addWorkspace('interface');
 
         echo
         '<div class="fieldset"><h5 id="autosave">' . __('Autosave') . '</h5>' .
@@ -78,7 +74,9 @@ class autosaveBehaviors
     }
 }
 
-dcCore::app()->addBehavior('adminPostHeaders', [autosaveBehaviors::class, 'jsLoad']);
+dcCore::app()->addBehaviors([
+    'adminPostHeaders'             => [autosaveBehaviors::class, 'jsLoad'],
 
-dcCore::app()->addBehavior('adminBeforeUserOptionsUpdate', [autosaveBehaviors::class, 'adminBeforeUserOptionsUpdate']);
-dcCore::app()->addBehavior('adminPreferencesFormV2', [autosaveBehaviors::class, 'adminPreferencesForm']);
+    'adminBeforeUserOptionsUpdate' => [autosaveBehaviors::class, 'adminBeforeUserOptionsUpdate'],
+    'adminPreferencesFormV2'       => [autosaveBehaviors::class, 'adminPreferencesForm'],
+]);
