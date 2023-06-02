@@ -14,7 +14,7 @@ $this->registerModule(
     'Autosave',
     'Autosave entry during edition',
     'Alain Vagner, Franck Paul',
-    '1.0',
+    '2.0',
     [
         'requires'    => [['core', '2.26']],
         'permissions' => dcCore::app()->auth->makePermissions([
