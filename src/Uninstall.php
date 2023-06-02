@@ -64,7 +64,7 @@ class Uninstall extends dcNsProcess
                 // ['delete_global', $ns],     // Delete global settings
                 // ['delete_all', $ns],        // Delete all settings
 
-                ['delete_related', 'interface:autosave;'], // Delete specific setting(s)
+                // ['delete_related', 'ns:id;ns:id;'], // Delete specific setting(s)
             ],
 
             // User preferences
@@ -73,7 +73,7 @@ class Uninstall extends dcNsProcess
                 // ['delete_global', $ws],     // Delete global preferences
                 // ['delete_all', $ws],        // Delete all preferences
 
-                // ['delete_related', 'ns:id;ns:id;'], // Delete specific preference(s)
+                ['delete_related', 'interface:autosave;'], // Delete specific preference(s)
             ],
 
             // Version (module)
