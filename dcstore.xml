@@ -1,10 +1,10 @@
 <modules xmlns:da="http://dotaddict.org/da/">
   <module id="autosave">
     <name>Autosave</name>
-    <version>2.0.1</version>
+    <version>2.0.2</version>
     <author>Alain Vagner, Franck Paul</author>
     <desc>Autosave entry during edition</desc>
-    <file>https://github.com/franck-paul/autosave/releases/download/2.0.1/plugin-autosave-2.0.1.zip</file>
+    <file>https://github.com/franck-paul/autosave/releases/download/2.0.2/plugin-autosave-2.0.2.zip</file>
     <da:dcmin>2.26</da:dcmin>
     <da:details>https://open-time.net/?q=autosave</da:details>
     <da:support>https://github.com/franck-paul/autosave</da:support>
