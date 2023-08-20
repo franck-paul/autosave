@@ -15,32 +15,29 @@ declare(strict_types=1);
 namespace Dotclear\Plugin\autosave;
 
 use dcCore;
-use dcNsProcess;
+use Dotclear\Core\Process;
 
-class Backend extends dcNsProcess
+class Backend extends Process
 {
-    protected static $init = false; /** @deprecated since 2.27 */
     public static function init(): bool
     {
-        static::$init = My::checkContext(My::BACKEND);
-
         // dead but useful code, in order to have translations
         __('Autosave') . __('Autosave entry during edition');
 
-        return static::$init;
+        return self::status(My::checkContext(My::BACKEND));
     }
 
     public static function process(): bool
     {
-        if (!static::$init) {
+        if (!self::status()) {
             return false;
         }
 
         dcCore::app()->addBehaviors([
-            'adminPostHeaders' => [BackendBehaviors::class, 'jsLoad'],
+            'adminPostHeaders' => BackendBehaviors::jsLoad(...),
 
-            'adminBeforeUserOptionsUpdate' => [BackendBehaviors::class, 'adminBeforeUserOptionsUpdate'],
-            'adminPreferencesFormV2'       => [BackendBehaviors::class, 'adminPreferencesForm'],
+            'adminBeforeUserOptionsUpdate' => BackendBehaviors::adminBeforeUserOptionsUpdate(...),
+            'adminPreferencesFormV2'       => BackendBehaviors::adminPreferencesForm(...),
         ]);
 
         return true;

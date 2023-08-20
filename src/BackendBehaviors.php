@@ -15,8 +15,8 @@ declare(strict_types=1);
 namespace Dotclear\Plugin\autosave;
 
 use dcCore;
-use dcPage;
 use dcWorkspace;
+use Dotclear\Core\Backend\Page;
 use Dotclear\Helper\Html\Form\Checkbox;
 use Dotclear\Helper\Html\Form\Fieldset;
 use Dotclear\Helper\Html\Form\Label;
@@ -37,15 +37,15 @@ class BackendBehaviors
             }
 
             return
-            dcPage::jsJson('autosave', [
+            Page::jsJson('autosave', [
                 'delay' => $delay * 1000,
                 'msg'   => [
                     'waiting' => __('Autosave: waiting for first save...'),
                     'saved'   => __('Autosave: last save at %s'),
                 ],
             ]) .
-            dcPage::jsModuleLoad(My::id() . '/js/jquery.autosave.js', dcCore::app()->getVersion(My::id())) . "\n" .
-            dcPage::jsModuleLoad(My::id() . '/js/autosave.js', dcCore::app()->getVersion(My::id())) . "\n";
+            My::jsLoad('jquery.autosave.js') . "\n" .
+            My::jsLoad('autosave.js') . "\n";
         }
     }
 
