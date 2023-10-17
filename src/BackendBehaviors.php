@@ -27,7 +27,7 @@ use Exception;
 
 class BackendBehaviors
 {
-    public static function jsLoad()
+    public static function jsLoad(): string
     {
         // Get and store user's prefs for plugin options
         if (dcCore::app()->auth->user_prefs->interface->autosave) {
@@ -47,9 +47,11 @@ class BackendBehaviors
             My::jsLoad('jquery.autosave.js') . "\n" .
             My::jsLoad('autosave.js') . "\n";
         }
+
+        return '';
     }
 
-    public static function adminBeforeUserOptionsUpdate()
+    public static function adminBeforeUserOptionsUpdate(): string
     {
         // Get and store user's prefs for plugin options
         try {
@@ -62,9 +64,11 @@ class BackendBehaviors
         } catch (Exception $e) {
             dcCore::app()->error->add($e->getMessage());
         }
+
+        return '';
     }
 
-    public static function adminPreferencesForm()
+    public static function adminPreferencesForm(): string
     {
         // Add fieldset for plugin options
 
@@ -83,5 +87,7 @@ class BackendBehaviors
                 ]),
             ])
         ->render();
+
+        return '';
     }
 }
