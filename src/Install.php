@@ -14,8 +14,7 @@ declare(strict_types=1);
 
 namespace Dotclear\Plugin\autosave;
 
-use dcCore;
-use dcWorkspace;
+use Dotclear\App;
 use Dotclear\Core\Process;
 use Exception;
 
@@ -34,11 +33,11 @@ class Install extends Process
 
         try {
             // Default user settings
-            if (!dcCore::app()->auth->user_prefs->interface->prefExists('autosave')) {
-                dcCore::app()->auth->user_prefs->interface->put('autosave', true, dcWorkspace::WS_BOOL);
+            if (!App::auth()->prefs()->interface->prefExists('autosave')) {
+                App::auth()->prefs()->interface->put('autosave', true, App::userWorkspace()::WS_BOOL);
             }
         } catch (Exception $e) {
-            dcCore::app()->error->add($e->getMessage());
+            App::error()->add($e->getMessage());
         }
 
         return true;

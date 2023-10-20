@@ -14,8 +14,7 @@ declare(strict_types=1);
 
 namespace Dotclear\Plugin\autosave;
 
-use dcCore;
-use dcWorkspace;
+use Dotclear\App;
 use Dotclear\Core\Backend\Page;
 use Dotclear\Helper\Html\Form\Checkbox;
 use Dotclear\Helper\Html\Form\Fieldset;
@@ -30,8 +29,8 @@ class BackendBehaviors
     public static function jsLoad(): string
     {
         // Get and store user's prefs for plugin options
-        if (dcCore::app()->auth->user_prefs->interface->autosave) {
-            $delay = (int) dcCore::app()->auth->user_prefs->interface->autosave_delay;
+        if (App::auth()->prefs()->interface->autosave) {
+            $delay = (int) App::auth()->prefs()->interface->autosave_delay;
             if (!$delay) {
                 $delay = 30;
             }
@@ -59,10 +58,10 @@ class BackendBehaviors
             if ($autosave_delay < 1) {
                 $autosave_delay = 30; // seconds
             }
-            dcCore::app()->auth->user_prefs->interface->put('autosave', !empty($_POST['autosave_active']), dcWorkspace::WS_BOOL);
-            dcCore::app()->auth->user_prefs->interface->put('autosave_delay', $autosave_delay, dcWorkspace::WS_INT);
+            App::auth()->prefs()->interface->put('autosave', !empty($_POST['autosave_active']), App::userWorkspace()::WS_BOOL);
+            App::auth()->prefs()->interface->put('autosave_delay', $autosave_delay, App::userWorkspace()::WS_INT);
         } catch (Exception $e) {
-            dcCore::app()->error->add($e->getMessage());
+            App::error()->add($e->getMessage());
         }
 
         return '';
@@ -76,12 +75,12 @@ class BackendBehaviors
             ->legend((new Legend(__('Autosave'))))
             ->fields([
                 (new Para())->items([
-                    (new Checkbox('autosave_active', (bool) dcCore::app()->auth->user_prefs->interface->autosave))
+                    (new Checkbox('autosave_active', (bool) App::auth()->prefs()->interface->autosave))
                         ->value(1)
                         ->label((new Label(__('Autosave entry during edition'), Label::INSIDE_TEXT_AFTER))),
                 ]),
                 (new Para())->items([
-                    (new Number('autosave_delay', 0, 9_999, (int) dcCore::app()->auth->user_prefs->interface->autosave_delay))
+                    (new Number('autosave_delay', 0, 9_999, (int) App::auth()->prefs()->interface->autosave_delay))
                         ->default(30)
                         ->label((new Label(__('Save every (in seconds, default: 30):'), Label::INSIDE_TEXT_BEFORE))),
                 ]),
