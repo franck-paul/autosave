@@ -31,7 +31,7 @@ class BackendBehaviors
         // Get and store user's prefs for plugin options
         if (App::auth()->prefs()->interface->autosave) {
             $delay = (int) App::auth()->prefs()->interface->autosave_delay;
-            if (!$delay) {
+            if ($delay === 0) {
                 $delay = 30;
             }
 
@@ -58,10 +58,11 @@ class BackendBehaviors
             if ($autosave_delay < 1) {
                 $autosave_delay = 30; // seconds
             }
+
             App::auth()->prefs()->interface->put('autosave', !empty($_POST['autosave_active']), App::userWorkspace()::WS_BOOL);
             App::auth()->prefs()->interface->put('autosave_delay', $autosave_delay, App::userWorkspace()::WS_INT);
-        } catch (Exception $e) {
-            App::error()->add($e->getMessage());
+        } catch (Exception $exception) {
+            App::error()->add($exception->getMessage());
         }
 
         return '';

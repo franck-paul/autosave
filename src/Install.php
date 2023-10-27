@@ -36,8 +36,8 @@ class Install extends Process
             if (!App::auth()->prefs()->interface->prefExists('autosave')) {
                 App::auth()->prefs()->interface->put('autosave', true, App::userWorkspace()::WS_BOOL);
             }
-        } catch (Exception $e) {
-            App::error()->add($e->getMessage());
+        } catch (Exception $exception) {
+            App::error()->add($exception->getMessage());
         }
 
         return true;
