@@ -4,7 +4,7 @@
 $(() => {
   dotclear.autosave = dotclear.getData('autosave');
   if ($('#id').length) {
-    $('#entry-form').append('<input type="hidden" id="save" value="save" name="save" />');
+    $('#entry-form').append('<input type="hidden" id="save" value="save" name="save">');
     $('#entry-form').autosave({
       /** Timer durations **/
       interval: Number(dotclear.autosave.delay),
