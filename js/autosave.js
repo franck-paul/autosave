@@ -1,7 +1,7 @@
 /*global $, dotclear */
 'use strict';
 
-$(() => {
+dotclear.ready(() => {
   dotclear.autosave = dotclear.getData('autosave');
   if ($('#id').length) {
     $('#entry-form').append('<input type="hidden" id="save" value="save" name="save">');
