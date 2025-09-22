@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @brief autosave, a plugin for Dotclear 2
  *
@@ -15,7 +16,6 @@ declare(strict_types=1);
 namespace Dotclear\Plugin\autosave;
 
 use Dotclear\App;
-use Dotclear\Core\Backend\Page;
 use Dotclear\Helper\Html\Form\Checkbox;
 use Dotclear\Helper\Html\Form\Fieldset;
 use Dotclear\Helper\Html\Form\Label;
@@ -36,7 +36,7 @@ class BackendBehaviors
             }
 
             return
-            Page::jsJson('autosave', [
+            App::backend()->page()->jsJson('autosave', [
                 'delay' => $delay * 1000,
                 'msg'   => [
                     'waiting' => __('Autosave: waiting for first save...'),
