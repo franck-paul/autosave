@@ -15,9 +15,9 @@ $this->registerModule(
     'Autosave',
     'Autosave entry during edition',
     'Alain Vagner, Franck Paul',
-    '5.0',
+    '5.1',
     [
-        'date'        => '2025-09-07T18:38:56+0200',
+        'date'        => '2025-09-22T10:36:39+0200',
         'requires'    => [['core', '2.36']],
         'permissions' => 'My',
         'type'        => 'plugin',
