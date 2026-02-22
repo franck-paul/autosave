@@ -75,27 +75,28 @@
       const data = $(this).find(o.data).not('.autosave\-ignore').serializeArray();
 
       // If the form is dirty and there is not already an active execution of the autosaver.
-      if ($.param(data) != $.param($(this).data('autosave.form')) && $(this).data('autosave.active') != true) {
-        $(this).data('autosave.active', true);
+      if (!($.param(data) != $.param($(this).data('autosave.form')) && $(this).data('autosave.active') != true)) {
+        return;
+      }
+      $(this).data('autosave.active', true);
 
-        const callback = (response) => {
-          $(self).data('autosave.active', false);
-          $(self).trigger('autosave.record');
+      const callback = (response) => {
+        $(self).data('autosave.active', false);
+        $(self).trigger('autosave.record');
 
-          o.save.apply(self, [self, o, response]);
-        };
+        o.save.apply(self, [self, o, response]);
+      };
 
-        if (o.url != undefined && typeof o.url === 'function') {
-          o.url.apply(self.element, [self.element, o, data, callback]);
-        } else {
-          $.ajax({
-            async: async ?? true,
-            url: (o == undefined || o.url == undefined) ? $(this).attr('action') : o.url,
-            type: 'post',
-            data,
-            success: callback
-          });
-        }
+      if (o.url != undefined && typeof o.url === 'function') {
+        o.url.apply(self.element, [self.element, o, data, callback]);
+      } else {
+        $.ajax({
+          async: async ?? true,
+          url: (o == undefined || o.url == undefined) ? $(this).attr('action') : o.url,
+          type: 'post',
+          data,
+          success: callback
+        });
       }
     }).trigger('autosave.setup');
 
