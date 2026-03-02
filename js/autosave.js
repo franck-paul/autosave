@@ -11,6 +11,12 @@ dotclear.ready(() => {
       monitor: 3000,
       /** Callbacks **/
       save() {
+        // Reset confirm close if necessary
+        if (typeof dotclear.confirmClosePage.getCurrentForms === 'function') {
+          dotclear.confirmClosePage.forms = [];
+          dotclear.confirmClosePage.getCurrentForms();
+        }
+        // Display message
         const d = new Date();
         const t = dotclear.autosave.msg.saved.replace('%s', d.toLocaleTimeString());
         if ($('#content p.message').length > 0) {
