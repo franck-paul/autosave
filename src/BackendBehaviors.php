@@ -8,7 +8,7 @@
  *
  * @author Franck Paul and contributors
  *
- * @copyright Franck Paul carnet.franck.paul@gmail.com
+ * @copyright Franck Paul contact@open-time.net
  * @copyright GPL-2.0 https://www.gnu.org/licenses/gpl-2.0.html
  */
 declare(strict_types=1);
@@ -30,7 +30,7 @@ class BackendBehaviors
     {
         // Get and store user's prefs for plugin options
         if (App::auth()->prefs()->interface->autosave) {
-            $delay = (int) App::auth()->prefs()->interface->autosave_delay;
+            $delay = is_numeric($delay = App::auth()->prefs()->interface->autosave_delay) ? (int) $delay : 0;
             if ($delay === 0) {
                 $delay = 30;
             }
@@ -54,13 +54,13 @@ class BackendBehaviors
     {
         // Get and store user's prefs for plugin options
         try {
-            $autosave_delay = (int) $_POST['autosave_delay'];
-            if ($autosave_delay < 1) {
-                $autosave_delay = 30; // seconds
+            $delay = isset($_POST['autosave_delay']) && is_numeric($delay = $_POST['autosave_delay']) ? (int) $delay : 0;
+            if ($delay < 1) {
+                $delay = 30; // seconds
             }
 
             App::auth()->prefs()->interface->put('autosave', !empty($_POST['autosave_active']), App::userWorkspace()::WS_BOOL);
-            App::auth()->prefs()->interface->put('autosave_delay', $autosave_delay, App::userWorkspace()::WS_INT);
+            App::auth()->prefs()->interface->put('autosave_delay', $delay, App::userWorkspace()::WS_INT);
         } catch (Exception $exception) {
             App::error()->add($exception->getMessage());
         }
@@ -72,6 +72,8 @@ class BackendBehaviors
     {
         // Add fieldset for plugin options
 
+        $delay = is_numeric($delay = App::auth()->prefs()->interface->autosave_delay) ? (int) $delay : 0;
+
         echo (new Fieldset('autosave'))
             ->legend((new Legend(__('Autosave'))))
             ->fields([
@@ -81,7 +83,7 @@ class BackendBehaviors
                         ->label((new Label(__('Autosave entry during edition'), Label::INSIDE_TEXT_AFTER))),
                 ]),
                 (new Para())->items([
-                    (new Number('autosave_delay', 0, 9_999, (int) App::auth()->prefs()->interface->autosave_delay))
+                    (new Number('autosave_delay', 0, 9_999, $delay))
                         ->default(30)
                         ->label((new Label(__('Save every (in seconds, default: 30):'), Label::INSIDE_TEXT_BEFORE))),
                 ]),

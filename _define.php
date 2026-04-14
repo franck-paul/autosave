@@ -8,7 +8,7 @@
  *
  * @author Alain Vagner, Franck Paul and contributors
  *
- * @copyright Alain Vagner, Franck Paul carnet.franck.paul@gmail.com
+ * @copyright Alain Vagner, Franck Paul contact@open-time.net
  * @copyright GPL-2.0 https://www.gnu.org/licenses/gpl-2.0.html
  */
 $this->registerModule(
