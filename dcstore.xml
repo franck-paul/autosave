@@ -1,11 +1,11 @@
 <modules xmlns:da="http://dotaddict.org/da/">
   <module id="autosave">
     <name>Autosave</name>
-    <version>5.3</version>
+    <version>5.4</version>
     <author>Alain Vagner, Franck Paul</author>
     <desc>Autosave entry during edition</desc>
-    <date>2026-04-14T12:13:20+0200</date>
-    <file>https://github.com/franck-paul/autosave/releases/download/5.3/plugin-autosave-5.3.zip</file>
+    <date>2026-04-14T15:31:35+0200</date>
+    <file>https://github.com/franck-paul/autosave/releases/download/5.4/plugin-autosave-5.4.zip</file>
     <da:dcmin>2.36</da:dcmin>
     <da:details>https://dotclear.org/plugin/detail/autosave</da:details>
     <da:support>https://github.com/franck-paul/autosave</da:support>
