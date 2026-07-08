@@ -36,8 +36,8 @@ class Install
 
         try {
             // Default user settings
-            if (!App::auth()->prefs()->interface->prefExists('autosave')) {
-                App::auth()->prefs()->interface->put('autosave', true, App::userWorkspace()::WS_BOOL);
+            if (!App::auth()->prefs()->get('interface')->prefExists('autosave')) {
+                App::auth()->prefs()->get('interface')->put('autosave', true, App::userWorkspace()::WS_BOOL);
             }
         } catch (Exception $exception) {
             App::error()->add($exception->getMessage());

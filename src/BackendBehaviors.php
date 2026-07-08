@@ -29,8 +29,8 @@ class BackendBehaviors
     public static function jsLoad(): string
     {
         // Get and store user's prefs for plugin options
-        if (App::auth()->prefs()->interface->autosave) {
-            $delay = is_numeric($delay = App::auth()->prefs()->interface->autosave_delay) ? (int) $delay : 0;
+        if (App::auth()->prefs()->get('interface')->getBool('autosave')) {
+            $delay = App::auth()->prefs()->get('interface')->getInt('autosave_delay', false);
             if ($delay === 0) {
                 $delay = 30;
             }
@@ -59,8 +59,8 @@ class BackendBehaviors
                 $delay = 30; // seconds
             }
 
-            App::auth()->prefs()->interface->put('autosave', !empty($_POST['autosave_active']), App::userWorkspace()::WS_BOOL);
-            App::auth()->prefs()->interface->put('autosave_delay', $delay, App::userWorkspace()::WS_INT);
+            App::auth()->prefs()->get('interface')->put('autosave', !empty($_POST['autosave_active']), App::userWorkspace()::WS_BOOL);
+            App::auth()->prefs()->get('interface')->put('autosave_delay', $delay, App::userWorkspace()::WS_INT);
         } catch (Exception $exception) {
             App::error()->add($exception->getMessage());
         }
@@ -72,13 +72,13 @@ class BackendBehaviors
     {
         // Add fieldset for plugin options
 
-        $delay = is_numeric($delay = App::auth()->prefs()->interface->autosave_delay) ? (int) $delay : 0;
+        $delay = App::auth()->prefs()->get('interface')->getInt('autosave_delay', false);
 
         echo (new Fieldset('autosave'))
             ->legend((new Legend(__('Autosave'))))
             ->fields([
                 (new Para())->items([
-                    (new Checkbox('autosave_active', (bool) App::auth()->prefs()->interface->autosave))
+                    (new Checkbox('autosave_active', App::auth()->prefs()->get('interface')->getBool('autosave', false)))
                         ->value(1)
                         ->label((new Label(__('Autosave entry during edition'), Label::INSIDE_TEXT_AFTER))),
                 ]),
