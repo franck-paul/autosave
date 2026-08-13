@@ -11,24 +11,28 @@
  * @copyright Alain Vagner, Franck Paul contact@open-time.net
  * @copyright GPL-2.0 https://www.gnu.org/licenses/gpl-2.0.html
  */
-$this->registerModule(
-    'Autosave',
-    'Autosave entry during edition',
-    'Alain Vagner, Franck Paul',
-    '6.0',
-    [
-        'date'        => '2026-08-03T09:45:23+0200',
-        'requires'    => [['core', '2.39']],
-        'permissions' => 'My',
-        'type'        => 'plugin',
-        'priority'    => 50,
-        'settings'    => [
-            'pref' => '#user-options.autosave',
-        ],
+declare(strict_types=1);
 
-        'details'    => 'https://open-time.net/?q=autosave',
-        'support'    => 'https://github.com/franck-paul/autosave',
-        'repository' => 'https://raw.githubusercontent.com/franck-paul/autosave/main/dcstore.xml',
-        'license'    => 'gpl2',
-    ]
-);
+if (isset($this) && is_object($this) && method_exists($this, 'registerModule') && isset($this->id) && is_string($this->id)) {
+    $this->registerModule(
+        'Autosave',
+        'Autosave entry during edition',
+        'Alain Vagner, Franck Paul',
+        '6.0',
+        [
+            'date'        => '2026-08-03T09:45:23+0200',
+            'requires'    => [['core', '2.39']],
+            'permissions' => 'My',
+            'type'        => 'plugin',
+            'priority'    => 50,
+            'settings'    => [
+                'pref' => '#user-options.autosave',
+            ],
+
+            'details'    => 'https://open-time.net/?q=autosave',
+            'support'    => 'https://github.com/franck-paul/autosave',
+            'repository' => 'https://raw.githubusercontent.com/franck-paul/autosave/main/dcstore.xml',
+            'license'    => 'gpl2',
+        ]
+    );
+}
