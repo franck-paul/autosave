@@ -29,7 +29,7 @@ class BackendBehaviors
     public static function jsLoad(): string
     {
         // Get and store user's prefs for plugin options
-        if (App::auth()->prefs()->get('interface')->getBool('autosave')) {
+        if (App::auth()->prefs()->get('interface')->getBool('autosave', false)) {
             $delay = App::auth()->prefs()->get('interface')->getInt('autosave_delay', false);
             if ($delay === 0) {
                 $delay = 30;
